@@ -7,14 +7,15 @@ class QueueArray:
         self._n = capacity
     
     def enQueue(self, item):
-        if self._n == self._tail and self._head == 0:   
-            print ("Enqueue failed. The queue is full.")
-            return False
-        else:
-            for i in range(0, self._tail - self._head):
-                self._data[i] = self._data[i + self._head]
-            self._tail = self._tail - self._head
-            self._head = 0
+        if self._n == self._tail:
+            if self._head == 0:
+                print ("Enqueue failed. The queue is full.")
+                return False
+            else:
+                for i in range(0, self._tail - self._head):
+                    self._data[i] = self._data[i + self._head]
+                self._tail = self._tail - self._head
+                self._head = 0
 
         self._data.insert(self._tail, item)
         self._tail += 1
